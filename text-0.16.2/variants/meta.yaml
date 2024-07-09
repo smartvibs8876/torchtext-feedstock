@@ -7,16 +7,21 @@ package:
   version: {{ version }} 
 
 build:
-  number: 1
+  number: 2
   string: py{{ python | replace(".", "") }}_{{ PKG_BUILDNUM }}   #[build_type == 'cpu']
   string: {{ build_type }}{{ cudatoolkit | replace(".*", "") }}_py{{ python | replace(".", "") }}_{{ PKG_BUILDNUM }} #[build_type == 'cuda']
 
 requirements:
+  build:
+    - cudatoolkit {{ cudatoolkit }}            #[build_type == 'cuda']
+  host:
+    - cudatoolkit {{ cudatoolkit }}            #[build_type == 'cuda']
   run:
     - pytorch-base {{ pytorch }}
     - _pytorch_select {{ pytorch_select_version }}
     - torchtext-base {{ torchtext }}
     - python {{ python }}
+    - cudatoolkit {{ cudatoolkit }}            #[build_type == 'cuda']
 
 about:
   home: http://pytorch.org/
