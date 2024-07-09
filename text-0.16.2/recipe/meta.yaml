@@ -25,12 +25,10 @@ requirements:
     - cmake {{ cmake }}
     - make
     - patch
-    - cudatoolkit {{ cudatoolkit }}            #[build_type == 'cuda']
   host:
     - python {{ python }}
     - _pytorch_select  {{ pytorch_select_version }}
     - pytorch-base     {{ pytorch }}
-    - cudatoolkit {{ cudatoolkit }}            #[build_type == 'cuda']
   run:
     - numpy {{ numpy }}
     - python {{ python }}
